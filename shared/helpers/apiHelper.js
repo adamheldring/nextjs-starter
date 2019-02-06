@@ -18,6 +18,7 @@ class APIHelper {
         "Content-Type": "application/json"
       }
     });
+    console.log("Token has been set!");
   }
 
   refreshToken(token) {
