@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Router from "next/router";
+
 import apiHelper from "../shared/helpers/apiHelper";
 
 export default class LoginPage extends Component {
@@ -19,9 +21,13 @@ export default class LoginPage extends Component {
       apiHelper.setToken(data.token);
 
       apiHelper.get("/api/v1/me/").then(({ data }) => console.log(data));
+
+      Router.push("/news");
     };
 
-    const onError = error => console.log(error);
+    const onError = error => {
+      console.log(error);
+    };
 
     apiHelper
       .post("/api-token-auth/", payload)
@@ -45,7 +51,7 @@ export default class LoginPage extends Component {
                 className="form-control mb-2"
                 placeholder="Email address"
                 required=""
-                autofocus=""
+                autoFocus=""
                 name="email"
                 onChange={this.handleInputChange}
               />
