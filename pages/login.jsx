@@ -4,12 +4,8 @@ import apiHelper from "../shared/helpers/apiHelper";
 export default class LoginPage extends Component {
   state = { email: "", password: "" };
 
-  handleEmailChange = event => {
-    this.setState({ email: event.target.value });
-  };
-
-  handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
@@ -26,8 +22,6 @@ export default class LoginPage extends Component {
     };
 
     const onError = error => console.log(error);
-
-    console.log(payload);
 
     apiHelper
       .post("/api-token-auth/", payload)
@@ -52,7 +46,8 @@ export default class LoginPage extends Component {
                 placeholder="Email address"
                 required=""
                 autofocus=""
-                onChange={this.handleEmailChange}
+                name="email"
+                onChange={this.handleInputChange}
               />
               <label htmlFor="inputPassword" className="sr-only">
                 Password
@@ -63,7 +58,8 @@ export default class LoginPage extends Component {
                 className="form-control"
                 placeholder="Password"
                 required=""
-                onChange={this.handlePasswordChange}
+                name="password"
+                onChange={this.handleInputChange}
               />
               <br />
               <button className="btn btn-primary btn-block" type="submit">
