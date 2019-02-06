@@ -2,6 +2,8 @@ import { observable, action, computed, runInAction, configure } from "mobx";
 
 import axios from "axios";
 
+import APIHelper from "../../../shared/helpers/apiHelper";
+
 const STORIES_URL =
   "https://beta.stockzoom.com/api/v1/unistream/stories/?page_size=40";
 
@@ -30,8 +32,7 @@ class NewsStore {
 
     const onError = error => console.log(error);
 
-    axios
-      .get(url)
+    APIHelper.get(url)
       .then(onSuccess)
       .catch(onError);
   }
